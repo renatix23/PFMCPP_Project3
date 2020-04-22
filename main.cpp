@@ -27,10 +27,10 @@ struct Person
     int distanceTraveled;
 
     struct Foot
-        {
-            int stepSize(int lenght);
- 		    void stepForward();
-        };
+    {
+        int stepSize(int lenght);
+        void stepForward();
+    };
 
     Foot leftFoot;
     Foot rightFoot;
@@ -333,8 +333,8 @@ int Characters::move(int x, int y, int z)
 
 void Characters::jump()
 {
-bool keyPressed = true;
-bool charJump = true;
+    bool keyPressed = true;
+    bool charJump = true;
 
     if (keyPressed == true)
     {
@@ -562,16 +562,16 @@ struct Videogame
     void endGame();
  };
 
- void Videogame::startGame()
- {
-     bool initializeGame = true;
-     bool gameOpened = true;
+void Videogame::startGame()
+{
+    bool initializeGame = true;
+    bool gameOpened = true;
 
-     if (gameOpened == true)
-     {
-         initializeGame = true;
-     }
- }
+    if (gameOpened == true)
+    {
+        initializeGame = true;
+    }
+}
 
 
 void Videogame::loadMatch()
