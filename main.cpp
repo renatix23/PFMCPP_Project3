@@ -240,10 +240,10 @@ int Dog::jump(int bedHeight)
     int jumpHeight = 120;
     bool dogJump = true;
 
-if (jumpHeight == bedHeight)
-{
-    dogJump = true;
-}
+    if (jumpHeight == bedHeight)
+    {
+        dogJump = true;
+    }
     return dogJump;
 }
 
