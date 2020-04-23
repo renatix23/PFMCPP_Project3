@@ -1,3 +1,5 @@
+#include <string>
+#include <iostream>
  /*
  Project 3 - Part 2 / 5
  Video: Chapter 2 Part 6
@@ -89,20 +91,23 @@ struct AudioInterface
     bool phantomPower = false;
 
 
-    void amplifySound();
+    void amplifySound(bool micGain = true);
     bool analogToDigital (bool convertion = true);
     void invertPhase(); 
 };
 
 
-void AudioInterface::amplifySound()
+void AudioInterface::amplifySound(bool micGain)
 {
-    bool micConected = true;
-    bool micGain = true;
+    bool micConected = micGain;
 
-    if (micConected == true)
+    if (micConected == false)
     {
-        micGain = true;
+        std::cout << "Connect Mic" << micConected << "\n";
+    }
+    else
+    {
+        std::cout << "Amplified" << micConected << "\n";
     }
 }
 
@@ -114,10 +119,12 @@ bool AudioInterface::analogToDigital(bool convertion)
     if (analogConnectedToDigital == true)
     {
         convertion = true;
+        std::cout << "Analog To Digital successful" << convertion << "\n";
     }
     else
     {
         convertion = false;
+        std::cout << "Analog To Digital failed" << convertion << "\n";
     }
 
     return convertion;
@@ -164,6 +171,7 @@ void Tree::photosynthesis()
     if (plantEnergy == true)
     {
         oxygen = true;
+        std::cout << "Photosyntesis was made" << plantEnergy << "\n";
     }
 }
 
@@ -180,13 +188,15 @@ void Tree::produceFruit()
     int quantityOfFruitPoints = 23;
     bool fruitsOnTree = false;
 
-    if (quantityOfFruitPoints == 0)
+    if (quantityOfFruitPoints > 0)
     {
-        fruitsOnTree = false;
+        fruitsOnTree = true;
+        std::cout << "Fruits produced" << quantityOfFruitPoints << "\n";
     }
     else
     {
-        fruitsOnTree = true;
+        fruitsOnTree = false;
+        std::cout << "Fruits produced" << quantityOfFruitPoints << "\n";
     }
 }
 
@@ -214,10 +224,12 @@ bool Dog::bark(bool isHungry)
     if (isHungry == true)
     {
         howLoud = 10;
+        std::cout << "Bark loudness" << howLoud << "\n";
     }
     else
     {
         howLoud = 0;
+        std::cout << "Bark loudness" << howLoud << "\n";
     }
     return howLoud;
 }
@@ -231,6 +243,7 @@ void Dog::eat()
     if (isFoodInPlate== true)
     {
         dogEats = true;
+        std::cout << "the dog is eating!" << std::endl;
     }
 }
 
@@ -275,6 +288,7 @@ void Monitor::playSound()
     if (signalReceived == true)
     {
         playSong = true;
+        std::cout << "Song is playing" << signalReceived << "\n";
     }
 }
 
@@ -287,6 +301,7 @@ void Monitor::changeVolume()
     if (gainMoved == false)
     {
         volumeLevel = 0.0f;
+        std::cout << "Needs more gain" << volumeLevel << "\n";
     }
 }
 
@@ -318,6 +333,19 @@ struct Characters
 int Characters::ColorIndicator::setColourSelector(int colour)
 {
     colour = 3;
+
+    if (colour == 1)
+    {
+        std::cout << "Red" << colour << "\n";
+    }
+    else if (colour == 2)
+    {
+        std::cout << "Blue" << colour << "\n";
+    }
+    else if (colour == 3)
+    {
+        std::cout << "Green" << colour << "\n";
+    }
     return colour;
 }
 
@@ -339,6 +367,7 @@ void Characters::jump()
     if (keyPressed == true)
     {
         charJump = true;
+        std::cout << "Character Jumps" << charJump << "\n";
     }
 }
 
@@ -391,6 +420,27 @@ int Inventory::Pets::selectPet(int pet)
 {
     pet = 2;
 
+    if (pet == 1)
+    {
+        std::cout << "Cat" << pet << "\n";
+    }
+    else if (pet == 2)
+    {
+        std::cout << "Penguin" << pet << "\n";
+    }
+    else if (pet == 3)
+    {
+        std::cout << "Horse" << pet << "\n";
+    }
+    else if (pet == 4)
+    {
+        std::cout << "Bear" << pet << "\n";
+    }
+    else if (pet == 5)
+    {
+        std::cout << "Wolf" << pet << "\n";
+    }
+
     return pet;
 }
 
@@ -415,6 +465,7 @@ void Inventory::checkIfSkinEquipped()
     if (isEquipped == true)
     {
         checked = true;
+        std::cout << "Item equipped!" << std::endl;
     }
 }
 
@@ -459,6 +510,7 @@ void Level::loadItems()
     if (levelStart == true)
     {
         loadScenery = true;
+        std::cout << "Start Game!" << std::endl;
     }
 }
 
@@ -482,6 +534,11 @@ struct UserInterface
 void UserInterface::showWarning(bool accountIsSuspended)
 {
     accountIsSuspended = true;
+    
+    if (accountIsSuspended == true)
+    {
+        std::cout << "Your account has been suspended" << accountIsSuspended << "\n";
+    }
 }
 
 
@@ -531,6 +588,15 @@ int Enemy::hurtPlayer(int playerDamage)
 {
     playerDamage = 12;
 
+    if (playerDamage > 0)
+    {
+        std::cout << "Damage" << playerDamage << "\n";
+    }
+    else
+    {
+        std::cout << "Good save" << playerDamage << "\n";
+    }
+
     return playerDamage;
 }
 
@@ -570,6 +636,7 @@ void Videogame::startGame()
     if (gameOpened == true)
     {
         initializeGame = true;
+        std::cout << "Are You Ready?" << initializeGame << "\n";
     }
 }
 
