@@ -44,7 +44,7 @@ struct Person
 
 int Person::Foot::stepSize(int lenght) 
 {
-     return lenght;
+    return lenght;
 }
 
 void Person::Foot::stepForward() {}
@@ -114,16 +114,12 @@ void AudioInterface::amplifySound(bool micGain)
 
 bool AudioInterface::analogToDigital(bool convertion)
 {
-    bool analogConnectedToDigital = true;
-
-    if (analogConnectedToDigital == true)
+    if (convertion == true)
     {
-        convertion = true;
         std::cout << "Analog To Digital successful" << convertion << "\n";
     }
     else
     {
-        convertion = false;
         std::cout << "Analog To Digital failed" << convertion << "\n";
     }
 
@@ -320,7 +316,7 @@ struct Characters
         int blue = 2;
         int green = 3;
     
-        int setColourSelector(int colour);
+        int setColourSelector(int colour = 1);
     };
 
 
@@ -332,8 +328,6 @@ struct Characters
 
 int Characters::ColorIndicator::setColourSelector(int colour)
 {
-    colour = 3;
-
     if (colour == 1)
     {
         std::cout << "Red" << colour << "\n";
@@ -418,8 +412,6 @@ struct Inventory
 
 int Inventory::Pets::selectPet(int pet)
 {
-    pet = 2;
-
     if (pet == 1)
     {
         std::cout << "Cat" << pet << "\n";
@@ -532,9 +524,7 @@ struct UserInterface
 
 
 void UserInterface::showWarning(bool accountIsSuspended)
-{
-    accountIsSuspended = true;
-    
+{   
     if (accountIsSuspended == true)
     {
         std::cout << "Your account has been suspended" << accountIsSuspended << "\n";
@@ -573,7 +563,7 @@ struct Enemy
 
 
     void killPlayer (int characterHealth = 0);
-    int hurtPlayer (int playerDamage);
+    int hurtPlayer (int playerDamage = 12);
     int move (int x = 2, int y = 3, int z = 0);
 };
 
@@ -586,8 +576,6 @@ void Enemy::killPlayer(int characterHealth)
 
 int Enemy::hurtPlayer(int playerDamage)
 {
-    playerDamage = 12;
-
     if (playerDamage > 0)
     {
         std::cout << "Damage" << playerDamage << "\n";
