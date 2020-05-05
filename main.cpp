@@ -20,14 +20,6 @@
  After you finish defining each type/function:
  click the [run] button.  Clear up any errors or warnings as best you can.
  
- Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
- 
- Make a pull request after you make your first commit and pin the pull request link to our DM thread.
-
- send me a DM to check your pull request
-
- Wait for my code review.
- 
  example:
  */
 
@@ -37,12 +29,20 @@ namespace Example
 struct UDT  // my user defined type named 'UDT'
 {
     int a; //a member variable
-    UDT() { a = 0; }             //1) the constructor
-    void printThing()            //the member function
-    {
-        std::cout << "UDT::printThing() " << a << std::endl;  //2) printing out something interesting
-    }
+    UDT();              //1) the constructor
+    void printThing();  //the member function
 };
+
+//the function definitions are outside of the class
+UDT::UDT()
+{
+    a = 0;
+}
+
+void UDT::printThing()
+{
+    std::cout << "UDT::printThing() " << a << std::endl;  //2) printing out something interesting
+}
 
 int main()
 {
@@ -55,9 +55,12 @@ int main()
     
     return 0;
 }
-}
+} //end namespace Example
 
 //insert Example::main() into main() of user's repo.
+
+
+
 
 
 
@@ -623,6 +626,19 @@ void Videogame::loadMatch()
 
 void Videogame::endGame(){}
 
+/*
+ MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
+
+ Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
+ 
+ If you didn't already: 
+    Make a pull request after you make your first commit
+    pin the pull request link and this repl.it link to our DM thread in a single message.
+
+ send me a DM to review your pull request when the project is ready for review.
+
+ Wait for my code review.
+ */
 
 #include <iostream>
 int main()
