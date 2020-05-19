@@ -73,11 +73,24 @@ struct AudioInterface
     int lineInputs = 8;
     float gain = 70.5f;
     bool phantomPower = false;
+    std::string audioInterfaceName = "Arturia";
 
+    AudioInterface()
+    {
+        speakerOuputs = 2;
+        micInputs = 1;
+        lineInputs = 1;
+        gain = 0.0f;
+        phantomPower = false;
+    }
 
     void amplifySound(bool micGain = true);
     bool analogToDigital (bool convertion = true);
     void invertPhase(); 
+    void manufacturerName()
+    {
+        std::cout << "Manufacturer Name = " << audioInterfaceName << std::endl;
+    }
 };
 
 
@@ -131,11 +144,15 @@ void AudioInterface::invertPhase()
 struct Tree
 {
     float leaves = 5293.23f;
-    int seeds = 3;
+    int seeds;
     float water = 5.32f;
     int flowers = 32;
     float energy = 424.3f;
 
+    Tree()
+    {
+        seeds = 1;
+    }
 
     void photosynthesis();
     bool releaseOxygen (bool isPhotosynthesisDone = true);
@@ -171,12 +188,12 @@ void Tree::produceFruit()
     if (quantityOfFruitPoints > 0)
     {
         fruitsOnTree = true;
-        std::cout << "Fruits produced" << quantityOfFruitPoints << "\n";
+        std::cout << "Yei, There are some fruits! Fruits produced " << quantityOfFruitPoints << "\n";
     }
     else
     {
         fruitsOnTree = false;
-        std::cout << "Fruits produced" << quantityOfFruitPoints << "\n";
+        std::cout << "D: We don't have Fruits! Fruits produced " << quantityOfFruitPoints << "\n";
     }
 }
 
@@ -189,11 +206,20 @@ struct Dog
     int eyes = 2;
     int nose = 1;
     int tail = 1;
+    int dogAge = 3;
 
+    Dog()
+    {
+        dogAge = 3;
+    }
 
     bool bark (bool isHungry = true);
     void eat();
     int jump (int bedHeight = 120);
+    void DogAge()
+    {
+        std::cout << "Dog's Age = " << dogAge << std::endl;
+    }
 };
 
 
@@ -250,6 +276,12 @@ struct Monitor
     int lineInput = 4;
     int auxInput = 1;
 
+    Monitor()
+    {
+        woofer = 1;
+        tweeter = 2;
+        auxInput = 1;
+    }
 
     void receiveSignal();
     void playSound();
@@ -268,7 +300,7 @@ void Monitor::playSound()
     if (signalReceived == true)
     {
         playSong = true;
-        std::cout << "Song is playing" << signalReceived << "\n";
+        std::cout << "Song is playing" << "\n";
     }
 }
 
@@ -303,6 +335,11 @@ struct Characters
         int setColourSelector(int colour = 1);
     };
 
+    Characters()
+    {
+        body = 1;
+        colourIndicator = 1;
+    }
 
     int move (int x = 2, int y = 5, int z = 7);
     void jump();
@@ -345,7 +382,7 @@ void Characters::jump()
     if (keyPressed == true)
     {
         charJump = true;
-        std::cout << "Character Jumps" << charJump << "\n";
+        std::cout << "Character Jumps " << "\n";
     }
 }
 
@@ -375,6 +412,7 @@ struct Inventory
     int skins = 135;
     int pets = 5;
     int coins = 2134;
+    int spaceLeft = 100;
 
     struct Pets
     { 
@@ -387,10 +425,19 @@ struct Inventory
         int selectPet(int pet = 5);
     };
  
+    Inventory()
+    {
+        weapons = 1;
+        skins = 0;
+    }
 
     void saveItem();
     void checkIfSkinEquipped();
     void addItems();
+    void spaceLeftOnInventory()
+    {
+        std::cout << "Space Left On Inventory = " << spaceLeft << std::endl;
+    }
  };
 
 
@@ -456,6 +503,7 @@ struct Level
     bool clip = true;
     int checkpoint = 1;
 
+    Level();
 
     void giveRewards();
     void saveProgress();
@@ -500,6 +548,14 @@ struct UserInterface
     bool startOption = true;
     float healthBar = 99.8f;
 
+    UserInterface()
+    {
+        exitMenu = false;
+        levelSelector = 1;
+        characterSelection = 0;
+        startOption = false;
+        healthBar = 0.0f;
+    }
 
     void showWarning(bool accountIsSuspended = true);
     void showMap();
@@ -511,7 +567,7 @@ void UserInterface::showWarning(bool accountIsSuspended)
 {   
     if (accountIsSuspended == true)
     {
-        std::cout << "Your account has been suspended" << accountIsSuspended << "\n";
+        std::cout << "Your account has been suspended" << "\n";
     }
 }
 
@@ -545,6 +601,7 @@ struct Enemy
     int lives = 5;
     int reflex = 8;
 
+    Enemy(){damage = 0;}
 
     void killPlayer (int characterHealth = 0);
     int hurtPlayer (int playerDamage = 12);
@@ -562,7 +619,7 @@ int Enemy::hurtPlayer(int playerDamage)
 {
     if (playerDamage > 0)
     {
-        std::cout << "Damage" << playerDamage << "\n";
+        std::cout << "Damage " << playerDamage << "\n";
     }
     else
     {
@@ -586,7 +643,7 @@ int Enemy::move(int x, int y, int z)
 
 
 //10)
-struct Videogame FIXME camel-case this class name: "VideoGame"
+struct VideoGame
 {
     Characters movement;
     Inventory skins;
@@ -594,13 +651,14 @@ struct Videogame FIXME camel-case this class name: "VideoGame"
     UserInterface healthBar;
     Enemy speed;
 
+    VideoGame();
 
     void startGame();
     void loadMatch();
     void endGame();
  };
 
-void Videogame::startGame()
+void VideoGame::startGame()
 {
     bool initializeGame = true;
     bool gameOpened = true;
@@ -613,7 +671,7 @@ void Videogame::startGame()
 }
 
 
-void Videogame::loadMatch()
+void VideoGame::loadMatch()
 {
     bool matchStartButtonClicked = false;
     bool matchStart = false;
@@ -624,7 +682,7 @@ void Videogame::loadMatch()
     }
 }
 
-void Videogame::endGame(){}
+void VideoGame::endGame(){}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
@@ -643,6 +701,52 @@ void Videogame::endGame(){}
 #include <iostream>
 int main()
 {
+    AudioInterface myAudioInterface;
+    myAudioInterface.manufacturerName();
+
+    Characters harry ;
+    harry.jump();
+
+    Inventory mainInventory;
+    mainInventory.checkIfSkinEquipped();
+    mainInventory.spaceLeftOnInventory();
+
+    Enemy max;
+    max.hurtPlayer();
+
+    Dog nala;
+    nala.DogAge();
+
+    Tree pine;
+    pine.produceFruit();
+
+    Monitor monitorA;
+    monitorA.playSound();
+
+    UserInterface mainMenu;
+    mainMenu.showWarning();
+
+    pine.seeds = 13;
+    std::cout << "This are the pine seeds produced " << pine.seeds << std::endl;
+    std::cout << "Are the seeds from the pine 0? " << (pine.seeds == 0 ? "Yes" : "No") << std::endl;
+
+    harry.colourIndicator = 1;
+    std::cout << "Harry's colour indicator is " << harry.colourIndicator << std::endl;
+    std::cout << "Is Harry Colour Indicator Blue ? " << (harry.colourIndicator == 2 ? "Yes" : "No") << std::endl;
+
+    std::cout << nala.dogAge << std::endl;
+
+    std::cout << max.speed << std::endl;
+
+    std::cout << "My audio Interface's mic inputs " << myAudioInterface.micInputs << std::endl;
+
+    std::cout << "Pet Selected " << mainInventory.pets << std::endl;
+    std::cout << "Is the pet selected a wolf? " << (mainInventory.pets == 5 ? "Yes" : "No") << std::endl;
+
+    std::cout << "Monitor's quantity of tweeters = " << monitorA.tweeter << std::endl;
+
+     std::cout << "Player's health = " << mainMenu.healthBar << std::endl;
+
     Example::main();
     std::cout << "good to go!" << std::endl;
 }
