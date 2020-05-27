@@ -47,10 +47,10 @@ int main()
 //1)
 struct AudioInterface
 {
-    int speakerOuputs = 4;
-    int micInputs = 8;
-    int lineInputs = 8;
-    float gain = 70.5f;
+    int speakerOuputs;
+    int micInputs;
+    int lineInputs;
+    float gain;
     bool phantomPower = false;
     std::string audioInterfaceName = "Arturia";
 
@@ -60,7 +60,6 @@ struct AudioInterface
         micInputs = 1;
         lineInputs = 1;
         gain = 0.0f;
-        phantomPower = false;
     }
 
     void amplifySound(bool micGain = true);
@@ -69,6 +68,10 @@ struct AudioInterface
     void manufacturerName()
     {
         std::cout << "Manufacturer Name = " << audioInterfaceName << std::endl;
+    }
+    void outputsNumber()  //the member function
+    {
+        std::cout << "Outputs = " << speakerOuputs << std::endl; 
     }
 };
 
@@ -124,9 +127,9 @@ struct Tree
 {
     float leaves = 5293.23f;
     int seeds;
-    float water = 5.32f;
+    float water {5.32f};
     int flowers = 32;
-    float energy = 424.3f;
+    float energy {424.3f};
 
     Tree()
     {
@@ -136,6 +139,10 @@ struct Tree
     void photosynthesis();
     bool releaseOxygen (bool isPhotosynthesisDone = true);
     void produceFruit();
+    void waterNeeded()  //the member function
+    {
+        std::cout << "Water Needed = " << water << std::endl; 
+    }
 };
 
 
@@ -181,15 +188,16 @@ void Tree::produceFruit()
 struct Dog
 {
     int legs = 4;
-    float fur = 8324.5f;
-    int eyes = 2;
+    float fur {8324.5f};
+    int eyes;
     int nose = 1;
     int tail = 1;
-    int dogAge = 3;
+    int dogAge;
 
     Dog()
     {
         dogAge = 3;
+        eyes =2;
     }
 
     bool bark (bool isHungry = true);
@@ -249,11 +257,11 @@ int Dog::jump(int bedHeight)
 //4)
 struct Monitor
 {
-    int woofer = 1;
-    int tweeter = 2;
-    int rcaInput = 2;
-    int lineInput = 4;
-    int auxInput = 1;
+    int woofer;
+    int tweeter;
+    int rcaInput {2};
+    int lineInput {4};
+    int auxInput;
 
     Monitor()
     {
@@ -265,6 +273,10 @@ struct Monitor
     void receiveSignal();
     void playSound();
     void changeVolume();
+    void inputsNumber()
+    {
+        std::cout << "Number of Inputs = " << rcaInput + lineInput + auxInput << std::endl; 
+    }
 };
 
 
@@ -299,10 +311,10 @@ void Monitor::changeVolume()
 //5)
 struct Characters
 {
-    int body = 1;
-    bool movement = true;
-    int colourIndicator = 2;
-    bool soundChar = true;
+    int body;
+    bool movement {true};
+    int colourIndicator;
+    bool soundChar {true};
     int backgroundStory = 23;
 
     struct ColorIndicator 
@@ -386,12 +398,12 @@ bool Characters::run(bool isInARush)
 //6)
 struct Inventory
 {
-    int skillSlots = 2;
-    int weapons = 25;
-    int skins = 135;
-    int pets = 5;
-    int coins = 2134;
-    int spaceLeft = 100;
+    int skillSlots;
+    int weapons;
+    int skins;
+    int pets;
+    int coins;
+    int spaceLeft;
 
     struct Pets
     { 
@@ -406,8 +418,12 @@ struct Inventory
  
     Inventory()
     {
-        weapons = 1;
-        skins = 0;
+        skillSlots = 2;
+        weapons = 25;
+        skins = 135;
+        pets = 5;
+        coins = 2134;
+        spaceLeft = 100;
     }
 
     void saveItem();
@@ -476,17 +492,19 @@ void Inventory::addItems(){}
 //7)
 struct Level
 {
-    int difficult = 4;
-    int bots = 27;
-    int map = 13;
-    bool clip = true;
-    int checkpoint = 1;
-
-    Level();
+    int difficult {4};
+    int bots {27};
+    int map {13};
+    bool clip {true};
+    int checkpoint {1};
 
     void giveRewards();
     void saveProgress();
     void loadItems();
+    void checkpointMessage()  //the member function
+    {
+        std::cout << "Great! You made it, checkpoint = " << checkpoint << std::endl; 
+    }
  };
 
 
@@ -521,11 +539,11 @@ void Level::loadItems()
 //8)
 struct UserInterface
 {
-    bool exitMenu = false;
-    int levelSelector = 1;
-    int characterSelection = 2;
-    bool startOption = true;
-    float healthBar = 99.8f;
+    bool exitMenu;
+    int levelSelector;
+    int characterSelection;
+    bool startOption;
+    float healthBar;
 
     UserInterface()
     {
@@ -574,11 +592,11 @@ bool UserInterface::endGame(bool buttonPressed)
 //9)
 struct Enemy
 {
-    int body = 1;
-    int damage = 43;
-    double speed = 4.3;
-    int lives = 5;
-    int reflex = 8;
+    int body {1};
+    int damage;
+    double speed {4.3};
+    int lives {5};
+    int reflex {8};
 
     Enemy(){damage = 0;}
 
@@ -682,6 +700,7 @@ int main()
 {
     AudioInterface myAudioInterface;
     myAudioInterface.manufacturerName();
+    myAudioInterface.outputsNumber();
 
     Characters harry ;
     harry.jump();
@@ -698,12 +717,17 @@ int main()
 
     Tree pine;
     pine.produceFruit();
+    pine.waterNeeded();
 
     Monitor monitorA;
     monitorA.playSound();
+    monitorA.inputsNumber();
 
     UserInterface mainMenu;
     mainMenu.showWarning();
+
+    Level level1;
+    level1.checkpointMessage();
 
     pine.seeds = 13;
     std::cout << "This are the pine seeds produced " << pine.seeds << std::endl;
