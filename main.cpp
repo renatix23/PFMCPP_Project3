@@ -98,6 +98,7 @@ struct AudioInterface
     {
         std::cout << "Outputs = " << speakerOuputs << std::endl; 
     }
+    int desireGainLevel (int threshold, int gainLevel);
 };
 
 
@@ -145,6 +146,21 @@ void AudioInterface::invertPhase()
         changePolarity = false;
     }
 }
+
+int AudioInterface::desireGainLevel(int threshold, int gainLevel)
+ {
+     threshold = 20;
+     int finalLevel = 0;
+     for (int i = 0; i < threshold;  i+= 1)
+     {
+         std::cout << "Initial Gain Level = " << gainLevel << " Gain Level Rised To = " << (i+1) <<std::endl;
+         finalLevel += gainLevel;
+     }
+     
+     std::cout << "Level rised = " << finalLevel << std::endl;
+     
+     return (finalLevel);
+ }
 
 
 //2)
@@ -302,6 +318,7 @@ struct Monitor
     {
         std::cout << "Number of Inputs = " << rcaInput + lineInput + auxInput << std::endl; 
     }
+    void outputLevel(int decibellsReceived, int threshold);
 };
 
 
@@ -330,6 +347,18 @@ void Monitor::changeVolume()
     {
         volumeLevel = 0.0f;
         std::cout << "Needs more gain" << volumeLevel << "\n";
+    }
+}
+
+void Monitor::outputLevel(int decibellsReceived, int threshold)
+{
+    int i = 0;
+    decibellsReceived = 2;
+    threshold = 60;
+    while (i < threshold)
+    {
+        i += decibellsReceived;
+        std::cout << i << " Decibells " << " / Initial Decibells Received = " << decibellsReceived << std::endl;
     }
 }
 
@@ -628,8 +657,16 @@ struct Enemy
     void killPlayer (int characterHealth = 0);
     int hurtPlayer (int playerDamage = 12);
     int move (int x = 2, int y = 3, int z = 0);
+    void enemyStrenght (int difficulty = 10);
 };
 
+void Enemy::enemyStrenght(int difficulty)
+{
+    for (int i = 1; i <= difficulty; i +=1)
+     {
+         std::cout << "Enemy strength incremented to " << i << std::endl;
+     }
+}
 
 void Enemy::killPlayer(int characterHealth)
 {
@@ -726,6 +763,7 @@ int main()
     AudioInterface myAudioInterface;
     myAudioInterface.manufacturerName();
     myAudioInterface.outputsNumber();
+    myAudioInterface.desireGainLevel(20, 1);
 
     Characters harry ;
     harry.jump();
@@ -736,6 +774,7 @@ int main()
 
     Enemy max;
     max.hurtPlayer();
+    max.enemyStrenght(10);
 
     Dog nala;
     nala.DogAge();
@@ -747,6 +786,7 @@ int main()
     Monitor monitorA;
     monitorA.playSound();
     monitorA.inputsNumber();
+    monitorA.outputLevel(2, 60);
 
     UserInterface mainMenu;
     mainMenu.showWarning();
